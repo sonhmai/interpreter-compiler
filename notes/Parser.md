@@ -15,13 +15,17 @@ Program
 AST Nodes
 - Program
 - Statement
+  - LetStatement
+  - ConstStatement
+  - ReturnStatement
 - Operator
 - Identifier
 - Expression
+  - IntegerLiteralExpression
+  - BooleanExpression
   - InfixExpression
   - PrefixExpression
-- Value
-  - IntegerLiteral
+  - PostfixExpression
 
 
 Pratt Parser
@@ -36,7 +40,11 @@ Examples
 - return statement
 - function
 
-### Prefix expression
+### Expression
+
+#### String literal expression
+
+#### Prefix expression
 ``` 
 -5;
 
@@ -46,7 +54,7 @@ tokens = [
 ]
 ```
 
-### Infix expression
+#### Infix expression
 ``` 
 1 + 2;
 
@@ -64,9 +72,13 @@ ast = InfixExpression(
 
 ```
 
-### let statement
+### Statement
+
+#### let statement
 ``` 
 let x = 5;
+let y = 3;
+let z = x + y;
 
 tokens = [
     Keyword("let"),

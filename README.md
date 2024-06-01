@@ -16,11 +16,24 @@ puts(result)
 ``` 
 Code (String)
 --> Tokenizing with Lexer
-Tokens
+--> Lexer(input string).NextToken() token.Token
+Tokens 
 --> Parsing with Parser
-AST
+--> Parser(lexer).ParseProgram() *ast.RootNode
+AST (ast.Node)
 --> Evaluating with Tree-walking interpreter
-Result
+--> func Eval(node ast.Node) object.Object
+Result (Object)
+```
+
+```
+package main
+
+code := ""
+lexer := Lexer.New(code)
+parser := Parser.New(lexer)
+programRootNode := parser.ParserProgram()
+Eval(programRootNode)
 ```
 
 Data structures
