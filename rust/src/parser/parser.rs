@@ -1,4 +1,5 @@
 use std::sync::Arc;
+use crate::ast::Node;
 use crate::lexer::Lexer;
 
 #[derive(Debug)]
@@ -11,5 +12,13 @@ impl Parser {
         Parser {
             lexer
         }
+    }
+
+    pub fn parse(&self) -> Node {
+        let program = Node::Program {
+            statements: vec![]
+        };
+
+        program
     }
 }
