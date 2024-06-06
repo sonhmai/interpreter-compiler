@@ -1,19 +1,30 @@
+use std::str::{CharIndices, Chars};
 use crate::token::Token;
 
 #[derive(Debug)]
 pub struct Lexer {
     input: String,
+    chars: Chars,
+    idx: usize,
 }
 
 impl Lexer {
     pub fn new(input: &str) -> Lexer {
         Lexer {
-            input: input.to_string()
+            input: input.to_string(),
+            indices: input.char_indices(),
+            idx: 0,
         }
     }
 
     pub fn next_token(&mut self) -> Token {
-        todo!()
+        // why not use self.input[self.idx]? because indexing string by bytes in
+        // not correct in Rust as string is UTF-8 encoded, 1 char can be >1 bytes.
+        if self.idx >= self.input.len() {
+            return Token::EOF
+        }
+
+        Token::EqualSign
     }
 }
 
@@ -32,6 +43,36 @@ mod tests {
     }
 
     #[test]
+    fn test_lexer_should_parse_eof() {
+        assert_correct_tokens(
+            "",
+            vec![
+                Token::EOF,
+            ]
+        );
+    }
+
+    #[test]
+    fn test_lexer_should_parse_semicolon() {
+        assert_correct_tokens(
+            ";",
+            vec![
+                Token::Semicolon,
+                Token::EOF,
+            ]
+        );
+
+        assert_correct_tokens(
+            "();",
+            vec![
+                Token::Semicolon,
+                Token::EOF,
+            ]
+        );
+    }
+
+
+    #[test]
     fn test_lexer_should_parse_correct_tokens() {
         assert_correct_tokens(
             "let s=5;",
@@ -40,6 +81,7 @@ mod tests {
                 Token::Identifier("s".to_string()),
                 Token::EqualSign,
                 Token::Int(5),
+                Token::Semicolon,
                 Token::EOF,
             ]
         );
