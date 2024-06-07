@@ -11,13 +11,49 @@ function eval(node):
 function eval_infx(node):
     left = eval(node.left)
     right = eval(node.right)
+    
     match node.operator:
-        case "+": return left+right
-        case "-": return left-right
+        case "+": return left + right
+        case "-": return left - right
+        case ">": return left > right
+        case "<": return left < right
         case _: throw Error("invalid infix expression operator")
 ```
 
-what does eval return? = what is the interpreter `internal object system`?
+``` 
+1 + 2;
+
+ast = Program(
+  statements=[
+    InfixExpression(
+      operator="+",
+      left=IntegerLiteralExpression(1),
+      right=IntegerLiteralExpression(2)
+    )
+  ]
+)
+
+1 > 2;
+
+ast = Program(
+  statements=[
+    InfixExpression(
+      operator=">",
+      left=IntegerLiteralExpression(1),
+      right=IntegerLiteralExpression(2)
+    )
+  ]
+)
+```
+
+what does eval return? 
+= what is the interpreter `internal object system`?
+= what is the value representation?
+
+many different choices for `value representation` in interpreted language
+- values represented as native types (int, bool, etc.) of the language interpreter written in.
+- by a mix of pointers and native types.
+- by only pointers e.g. `everything is Object` -> used here.
 
 Evaluation with Tree-walking interpreter
 - object system
@@ -40,3 +76,6 @@ Evaluation with Tree-walking interpreter
 Eval(*ast.Program)
 -> Eval(*ast.Statement) for each Statement in *ast.Program.Statements
 ```
+
+References
+- [Wren Programming Language, has two types of value representation](https://github.com/wren-lang/wren.git)
