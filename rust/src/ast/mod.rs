@@ -1,10 +1,9 @@
-
-
 #[derive(Debug)]
 pub enum Node {
     Program {
         statements: Vec<Statement>,
-    }
+    },
+    Expression(Expression),
 }
 
 #[derive(Debug)]
