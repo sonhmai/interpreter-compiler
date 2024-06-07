@@ -9,7 +9,8 @@ fn main() {
     let lexer = Arc::new(Lexer::new(code));
     let parser = Parser::new(lexer.clone());
     let ast = parser.parse();
-    eval(&ast);
+    let value = eval(&ast);
 
-    println!("{ast:?}")
+    println!("AST: {ast:?}");
+    println!("evaluated value: {value:?}");
 }
