@@ -23,7 +23,6 @@ AST Node
   - LetStatement
   - ConstStatement
   - ReturnStatement
-- Operator
 - Expression
   - Identifier
     - treated as an expression because e.g. in `let x=y;` y is a value-producing expr
@@ -32,6 +31,7 @@ AST Node
   - InfixExpression
   - PrefixExpression
   - PostfixExpression
+- Operator
 
 
 `Statement vs Expression`: here expression results in value, statement does not.
