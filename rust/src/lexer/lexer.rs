@@ -12,7 +12,7 @@ impl Lexer {
     pub fn new(input: &str) -> Lexer {
         Lexer {
             input: input.to_string(),
-            indices: input.char_indices(),
+            chars: input.chars(),
             idx: 0,
         }
     }
