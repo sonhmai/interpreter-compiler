@@ -1,7 +1,10 @@
 # Parser Code
 
-We use `Enum` in rust to represent different subtypes of a AST node because
+Rust
+- we use `Enum` in rust to represent different subtypes of a AST node because
 it offers pattern matching.
+- enum -> support a limited set of things.
+- trait -> open for extension.
 
 In languages with interfaces like Go, interface is used instead of enum.
 
