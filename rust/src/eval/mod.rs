@@ -1,11 +1,14 @@
 mod value;
+
 pub use value::Value;
 
-use crate::ast::Node;
+use crate::ast::{Expression, Node};
 
 pub fn eval(node: &Node) -> Value {
-
-    Value::Null
+    match node {
+        Node::Expression(Expression::IntegerLiteralExpression(i)) => Value::Integer(*i),
+        _ => Value::Null
+    }
 }
 
 #[cfg(test)]
