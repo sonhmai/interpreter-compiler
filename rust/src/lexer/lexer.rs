@@ -4,7 +4,6 @@ use crate::token::Token;
 #[derive(Debug)]
 pub struct Lexer {
     input: String,
-    chars: Chars,
     idx: usize,
 }
 
@@ -12,7 +11,6 @@ impl Lexer {
     pub fn new(input: &str) -> Lexer {
         Lexer {
             input: input.to_string(),
-            chars: input.chars(),
             idx: 0,
         }
     }
