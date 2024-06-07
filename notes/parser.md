@@ -23,7 +23,6 @@ AST Node
   - LetStatement
   - ConstStatement
   - ReturnStatement
-- Operator
 - Expression
   - Identifier
     - treated as an expression because e.g. in `let x=y;` y is a value-producing expr
@@ -32,6 +31,7 @@ AST Node
   - InfixExpression
   - PrefixExpression
   - PostfixExpression
+- Operator
 
 
 `Statement vs Expression`: here expression results in value, statement does not.
@@ -40,6 +40,15 @@ AST Node
 - the distinction depends on programming language
   - in Scala, function literals are expression and can be bound to a variable `val add = (a:Int, b:Int) => a + b`
   - in Java, function cannot be used as an expression
+
+Parser Approaches
+- top-down vs bottom-up parsing
+  - top-down: constructing AST root node then descend
+  - bottom-up: the other way around
+- top-down variations
+  - `recursive descent parsing/ Pratt parser` -> we write this
+  - early parsing
+  - predictive parsing
 
 Pratt Parser
 - to parse an expression, each operator has <= 2 parsing functions depending on type
@@ -86,6 +95,19 @@ ast = InfixExpression(
 ```
 
 ### Statement
+
+
+ast for `let x=5;`
+
+![img_2.png](../imgs/ast_one_statement_program.png)
+
+
+ast for parsing `1+2+3;`
+
+![img_3.png](../imgs/ast_for_1+2+3.png)
+
+
+
 
 #### let statement - variable bindings
 ``` 

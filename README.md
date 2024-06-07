@@ -11,8 +11,7 @@ let result = one + two;
 puts(result)
 ```
 
-## Interpreter
-
+Interpreter
 ``` 
 Code (String)
 --> Tokenizing with Lexer
@@ -36,7 +35,13 @@ programRootNode := parser.ParserProgram()
 Eval(programRootNode)
 ```
 
-Data structures
+
+## Terms
+- lexing
+  - tokens
+  - lexer
+  - repl
+- Data structures
 - Token
 - AST
 - Lexer
@@ -47,105 +52,13 @@ Data structures
   - get(name: string) -> Option[Object]
   - set(name: string, obj: Object) -> Result<()>
   - pass to Eval `eval(ast.Node, Environment) -> Object`
-
-Lexing 
-- tokens
-- lexer
-- repl
-
-Parsing
-- top-down vs bottom-up parsing
-  - top-down: constructing AST root node then descend
-  - bottom-up: the other way around
-- top-down variations
-  - `recursive descent parsing/ Pratt parser` -> we write this
-  - early parsing
-  - predictive parsing
-- parsing `let` statement
-- parsing `return` statement
-- parsing `expressions`
-
-Evaluation with Tree-walking interpreter
-- object system
-- expressions evaluation `func Eval(node ast.Node) object.Object`
-  - each ast node needs different evaluation which is implemented in this Eval function.
-  - literals = self-evaluating expressions
-    - boolean
-    - integer
-    - null
-    - prefix (unary operator) expression e.g. `! -`
-    - infix expression e.g. `+ - * / > < == !=`
-  - conditionals
-  - error handling
-  - bindings (`let` statement, identifier evaluation)
-  - functions & function calls
-  - garbage collector: reusing Go's
-
-``` 
-//  evaluating expressions
-Eval(*ast.Program)
--> Eval(*ast.Statement) for each Statement in *ast.Program.Statements
-```
-
-Extending
-  - adding string support
-  - built-in functions
-  - arrays
-  - hashmaps
-  - output to STDOUT
-
-    
-ast for `let x=5;`
-
-![img_2.png](imgs/img_2.png)
-
-``` 
-ast for parsing
-
-1+2+3
-```
-
-![img_3.png](imgs/img_3.png)
-
-
----
-## Compiler
-```
-Source Code (String)
---> Lexer
-Tokens
--->Parser
-AST
---> Optimizer (Compiler)
-Internal Representation (Bytecode)
---> Code Generator (Virtual Machine)
-Machine Code (Objects)
-```
-
-Data Structures
-1. bytecode
-2. instruction
-3. vm
-  - struct `Frame` (stack frame): data structure holding execution-relevant info.
-  - struct `VM`: virtual machine holding (1) constant pool, (2) stack,
-    a stack pointer pointing to next free slot in the stack.
-
-
-![img.png](imgs/img.png)
-
-
-Compile Time vs Run Time
-
-![img_1.png](imgs/img_1.png)
-
-
-## Terms
 - infix operator
 - prefix operator
 - symbol table
 - built-in function
 - closure
 - virtual machine: a computer built with software, mimics how a computer works
+
 
 ## References
 Books
