@@ -1,24 +1,23 @@
+pub(crate) mod statement;
+
 #[derive(Debug)]
 pub enum Node {
     Program {
-        statements: Vec<Statement>,
+        statements: Vec<dyn Statement>,
     },
-    Statement(Statement),
+    Statement(dyn Statement),
     Expression(Expression),
 }
 
-#[derive(Debug)]
-pub enum Statement {
-    LetStatement,
-    ConstStatement,
-    ReturnStatement,
-}
+pub trait Statement {}
 
 #[derive(Debug)]
 pub enum Expression {
-    Identifier {
-        name: String,
-    },
     BooleanExpression(bool),
     IntegerLiteralExpression(i32),
+}
+
+// Identifier represents variable like "x" in `let x = 5;`
+pub struct Identifier {
+    pub name: String,
 }
