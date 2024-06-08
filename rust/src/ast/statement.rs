@@ -1,9 +1,6 @@
-use crate::ast::{Expression, Identifier, Statement};
+use crate::ast::{Expression, Identifier};
 
-
-impl Statement for LetStatement {}
-
-
+#[derive(Debug)]
 pub struct LetStatement {
     pub name: Identifier,
     pub value: Expression,
@@ -17,7 +14,3 @@ impl LetStatement {
         }
     }
 }
-
-pub struct ConstStatement {}
-
-pub struct ReturnStatement {}

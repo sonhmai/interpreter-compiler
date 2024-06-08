@@ -21,7 +21,7 @@ fn eval_expression(expression: &Expression) -> Value {
     }
 }
 
-fn eval_statement(statement: &dyn Statement) -> Value {
+fn eval_statement(statement: &Statement) -> Value {
     match statement {
         _ => Value::Null
     }
@@ -29,8 +29,9 @@ fn eval_statement(statement: &dyn Statement) -> Value {
 
 #[cfg(test)]
 mod tests {
-    use crate::ast::{Identifier, Node};
+    use crate::ast::{Identifier, Node, Statement};
     use crate::ast::Expression::{BooleanExpression, IntegerLiteralExpression};
+    use crate::ast::Node::Program;
     use crate::ast::statement::LetStatement;
     use crate::eval::{eval, Value};
 
@@ -62,13 +63,20 @@ mod tests {
     #[test]
     fn test_eval_let() {
         assert_value(
-            Node::Statement(
-                LetStatement::new(
-                    Identifier { name: "x".to_string() },
-                    IntegerLiteralExpression(42),
-                )
-            ),
-            Value::Boolean(true),
+            Program {
+                statements: vec![
+                    Statement::LetStatement(
+                        LetStatement::new(
+                            Identifier { name: "x".to_string() },
+                            IntegerLiteralExpression(42),
+                        )
+                    ),
+                ]
+            },
+            Value::Null,
         );
+
+        // TODO test unbound identifier
+
     }
 }

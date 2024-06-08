@@ -1,15 +1,22 @@
-pub(crate) mod statement;
+use crate::ast::statement::LetStatement;
+
+pub mod statement;
 
 #[derive(Debug)]
 pub enum Node {
     Program {
-        statements: Vec<dyn Statement>,
+        statements: Vec<Statement>,
     },
-    Statement(dyn Statement),
+    Statement(Statement),
     Expression(Expression),
 }
 
-pub trait Statement {}
+#[derive(Debug)]
+pub enum Statement {
+    LetStatement(LetStatement),
+    ConstStatement,
+    ReturnStatement,
+}
 
 #[derive(Debug)]
 pub enum Expression {
@@ -18,6 +25,7 @@ pub enum Expression {
 }
 
 // Identifier represents variable like "x" in `let x = 5;`
+#[derive(Debug)]
 pub struct Identifier {
     pub name: String,
 }
