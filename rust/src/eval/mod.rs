@@ -2,12 +2,26 @@ mod value;
 
 pub use value::Value;
 
-use crate::ast::{Expression, Node};
+use crate::ast::{Expression, Node, Statement};
 
 pub fn eval(node: &Node) -> Value {
     match node {
-        Node::Expression(Expression::IntegerLiteralExpression(i)) => Value::Integer(*i),
-        Node::Expression(Expression::BooleanExpression(boolean)) => Value::Boolean(*boolean),
+        Node::Expression(expression) => eval_expression(expression),
+        Node::Statement(statement) => eval_statement(statement),
+        _ => Value::Null
+    }
+}
+
+fn eval_expression(expression: &Expression) -> Value {
+    match expression {
+        Expression::IntegerLiteralExpression(i) => Value::Integer(*i),
+        Expression::BooleanExpression(boolean) => Value::Boolean(*boolean),
+        _ => Value::Null
+    }
+}
+
+fn eval_statement(statement: &Statement) -> Value {
+    match statement {
         _ => Value::Null
     }
 }
@@ -40,6 +54,14 @@ mod tests {
         assert_value(
             Node::Expression(BooleanExpression(false)),
             Value::Boolean(false),
+        );
+    }
+
+    #[test]
+    fn test_eval_let() {
+        assert_value(
+            Node::Expression(BooleanExpression(true)),
+            Value::Boolean(true),
         );
     }
 }

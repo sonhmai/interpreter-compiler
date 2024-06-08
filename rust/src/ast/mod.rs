@@ -3,6 +3,7 @@ pub enum Node {
     Program {
         statements: Vec<Statement>,
     },
+    Statement(Statement),
     Expression(Expression),
 }
 
