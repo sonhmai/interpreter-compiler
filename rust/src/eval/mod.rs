@@ -2,10 +2,12 @@ pub use value::Value;
 
 use crate::ast::{Expression, Node};
 use crate::ast::Statement;
+use crate::eval::environment::Environment;
 
 mod value;
+pub mod environment;
 
-pub fn eval(node: &Node) -> Value {
+pub fn eval(node: &Node, environment: &mut Environment) -> Value {
     match node {
         Node::Expression(expression) => eval_expression(expression),
         Node::Statement(statement) => eval_statement(statement),
@@ -34,9 +36,11 @@ mod tests {
     use crate::ast::Node::Program;
     use crate::ast::statement::LetStatement;
     use crate::eval::{eval, Value};
+    use crate::eval::environment::Environment;
 
     fn assert_value(node: Node, expected_value: Value) {
-        let value = eval(&node);
+        let mut env = Environment::new();
+        let value = eval(&node, &mut env);
         assert_eq!(value, expected_value)
     }
 
