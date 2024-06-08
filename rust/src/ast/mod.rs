@@ -18,6 +18,6 @@ pub enum Expression {
     Identifier {
         name: String,
     },
-    BooleanExpression,
+    BooleanExpression(bool),
     IntegerLiteralExpression(i32),
 }
