@@ -10,7 +10,7 @@ pub mod environment;
 pub fn eval(node: &Node, environment: &mut Environment) -> Value {
     match node {
         Node::Expression(expression) => eval_expression(expression),
-        Node::Statement(statement) => eval_statement(statement),
+        Node::Statement(statement) => eval_statement(statement, environment),
         _ => Value::Null
     }
 }
@@ -23,8 +23,14 @@ fn eval_expression(expression: &Expression) -> Value {
     }
 }
 
-fn eval_statement(statement: &Statement) -> Value {
+fn eval_statement(statement: &Statement, env: &mut Environment) -> Value {
     match statement {
+        Statement::LetStatement(stmt) => {
+            let value = eval_expression(&stmt.expression);
+            let name = &stmt.identifier.name;
+            env.set(name, value);
+            Value::Null
+        },
         _ => Value::Null
     }
 }
@@ -81,6 +87,7 @@ mod tests {
         );
 
         // TODO test unbound identifier
+
 
     }
 }

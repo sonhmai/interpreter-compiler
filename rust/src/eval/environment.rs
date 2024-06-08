@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::iter::Map;
+
 use crate::eval::Value;
 
 /// Environment is a place to look up what value representation an identifier string
@@ -20,11 +20,12 @@ impl Environment {
             map
         }
     }
-    pub fn get(name: String) -> Value {
-        Value::Null
+
+    pub fn get(&self, name: &String) -> Option<&Value> {
+        self.map.get(&name)
     }
 
-    pub fn set(name: String) -> () {
+    pub fn set(&mut self, name: &String, value: Value) -> () {
         ()
     }
 }
