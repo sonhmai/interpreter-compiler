@@ -1,8 +1,9 @@
-mod value;
-
 pub use value::Value;
 
-use crate::ast::{Expression, Node, Statement};
+use crate::ast::{Expression, Node};
+use crate::ast::Statement;
+
+mod value;
 
 pub fn eval(node: &Node) -> Value {
     match node {
@@ -20,7 +21,7 @@ fn eval_expression(expression: &Expression) -> Value {
     }
 }
 
-fn eval_statement(statement: &Statement) -> Value {
+fn eval_statement(statement: &dyn Statement) -> Value {
     match statement {
         _ => Value::Null
     }
@@ -28,8 +29,9 @@ fn eval_statement(statement: &Statement) -> Value {
 
 #[cfg(test)]
 mod tests {
+    use crate::ast::{Identifier, Node};
     use crate::ast::Expression::{BooleanExpression, IntegerLiteralExpression};
-    use crate::ast::{Expression, Node};
+    use crate::ast::statement::LetStatement;
     use crate::eval::{eval, Value};
 
     fn assert_value(node: Node, expected_value: Value) {
@@ -60,7 +62,12 @@ mod tests {
     #[test]
     fn test_eval_let() {
         assert_value(
-            Node::Expression(BooleanExpression(true)),
+            Node::Statement(
+                LetStatement::new(
+                    Identifier { name: "x".to_string() },
+                    IntegerLiteralExpression(42),
+                )
+            ),
             Value::Boolean(true),
         );
     }
