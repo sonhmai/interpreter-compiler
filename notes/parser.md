@@ -23,6 +23,7 @@ AST Node
   - LetStatement
   - ConstStatement
   - ReturnStatement
+  - ExpressionStatement `1+2;`
 - Expression
   - Identifier
     - treated as an expression because e.g. in `let x=y;` y is a value-producing expr
