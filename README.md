@@ -35,6 +35,17 @@ programRootNode := parser.ParserProgram()
 Eval(programRootNode)
 ```
 
+## Module Structure
+
+``` 
+ast - Abstract Syntax Tree nodes output of the parser
+compiler - converting AST to bytecodes (instructions in bytes)
+eval - interpreter evaluation
+lexer - lexing text to tokens
+parser - parsing tokens to Abstract Syntax Tree
+token - code tokens parsed from string
+vm - virtual machine to execute the instructions in bytes from compiler
+```
 
 ## Terms
 - lexing
