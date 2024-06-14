@@ -14,3 +14,13 @@ impl LetStatement {
         }
     }
 }
+
+#[derive(Debug)]
+pub struct ReturnStatement {
+
+}
+
+#[derive(Debug)]
+pub struct ExpressionStatement {
+
+}
