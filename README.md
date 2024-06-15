@@ -55,24 +55,79 @@ vm - virtual machine to execute the instructions in bytes from compiler
   - repl
 - parsing
   - parser
-  - abstract syntax tree node
+  - abstract syntax tree (ast) node
     - program
     - statement
     - identifier
     - expression
+      - prefix expr
+      - infix expr
+      - if expr
+        - condition
+        - consequence
+        - alternative
+      - integer literal
+      - boolean literal
   - methods
     - top down
       - pratt parser (operator precedence)
     - bottom up
 - interpreting
   - evaluation
-    - environment
+  - environment
+  - conditionals
+  - objects
+    - null
 - compiling
   - compiler
   - bytecode
-  - instruction
-  - opcode
+  - instructions
+  - constants
+  - opcodes
+    - constant
+    - pop
+    - add
+    - sub
+    - mul
+    - div
+    - mod
+    - true
+    - false
+    - equal
+    - greater
+    - and
+    - or
+    - minus
+    - plus plus
+    - minus minus
+    - bang
+    - jump not truthy
+    - jump
+    - null
+    - get global
+    - set global
+    - array
+    - hash
+    - index
+    - call
+    - return value
+    - return
+    - get local
+    - set local
+    - get builtin
+    - closure
+    - get free
+    - current closure
   - virtual machine
+    - stack machine
+    - stack pointer
+  - objects
+    - null
+  - conditionals
+    - ast flatten
+    - jumps
+    - null
+  - bindings
   - closure
 - symbol table
 - built-in function
