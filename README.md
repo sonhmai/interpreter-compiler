@@ -48,27 +48,34 @@ vm - virtual machine to execute the instructions in bytes from compiler
 ```
 
 ## Terms
+
 - lexing
-  - tokens
   - lexer
+  - tokens
   - repl
-- Data structures
-- Token
-- AST
-- Lexer
-- Parser
-- `Environment`
-  - keeping track of which name is mapped to which value e.g. `let x=5;`
-  - HashMap[string, Object]
-  - get(name: string) -> Option[Object]
-  - set(name: string, obj: Object) -> Result<()>
-  - pass to Eval `eval(ast.Node, Environment) -> Object`
-- infix operator
-- prefix operator
+- parsing
+  - parser
+  - abstract syntax tree node
+    - program
+    - statement
+    - identifier
+    - expression
+  - methods
+    - top down
+      - pratt parser (operator precedence)
+    - bottom up
+- interpreting
+  - evaluation
+    - environment
+- compiling
+  - compiler
+  - bytecode
+  - instruction
+  - opcode
+  - virtual machine
+  - closure
 - symbol table
 - built-in function
-- closure
-- virtual machine: a computer built with software, mimics how a computer works
 
 
 ## References

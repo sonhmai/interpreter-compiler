@@ -77,5 +77,13 @@ Eval(*ast.Program)
 -> Eval(*ast.Statement) for each Statement in *ast.Program.Statements
 ```
 
+`Environment`
+- keeping track of which name is mapped to which value e.g. `let x=5;`
+- HashMap[string, Object]
+- get(name: string) -> Option[Object]
+- set(name: string, obj: Object) -> Result<()>
+- pass to Eval `eval(ast.Node, Environment) -> Object`
+
+
 References
 - [Wren Programming Language, has two types of value representation](https://github.com/wren-lang/wren.git)
