@@ -1,0 +1,159 @@
+[tester::#KJ0] Running tests for Stage #KJ0 (Scanning: Number literals)
+[tester::#KJ0] [test-1] Running test case: 1
+[tester::#KJ0] [test-1] Writing contents to ./test.lox:
+[tester::#KJ0] [test-1] [test.lox] 1234.1234
+[tester::#KJ0] [test-1] $ ./your_program.sh tokenize test.lox
+[your_program] NUMBER 1234.1234 1234.1234
+[your_program] EOF  null
+[tester::#KJ0] [test-1] ✓ 2 line(s) match on stdout
+[tester::#KJ0] [test-1] ✓ Received exit code 0.
+[tester::#KJ0] [test-2] Running test case: 2
+[tester::#KJ0] [test-2] Writing contents to ./test.lox:
+[tester::#KJ0] [test-2] [test.lox] 1234.1234.1234.
+[tester::#KJ0] [test-2] $ ./your_program.sh tokenize test.lox
+[your_program] NUMBER 1234.1234 1234.1234
+[your_program] DOT . null
+[your_program] NUMBER 1234 1234.0
+[your_program] DOT . null
+[your_program] EOF  null
+[tester::#KJ0] [test-2] ✓ 5 line(s) match on stdout
+[tester::#KJ0] [test-2] ✓ Received exit code 0.
+[tester::#KJ0] [test-3] Running test case: 3
+[tester::#KJ0] [test-3] Writing contents to ./test.lox:
+[tester::#KJ0] [test-3] [test.lox] "Hello" = "Hello" && 42 == 42
+[tester::#KJ0] [test-3] $ ./your_program.sh tokenize test.lox
+[your_program] STRING "Hello" Hello
+[your_program] EQUAL = null
+[your_program] STRING "Hello" Hello
+[your_program] NUMBER 42 42.0
+[your_program] EQUAL_EQUAL == null
+[your_program] NUMBER 42 42.0
+[your_program] EOF  null
+[your_program] [line 1] Error: Unexpected character: &
+[your_program] [line 1] Error: Unexpected character: &
+[tester::#KJ0] [test-3] ✓ 2 line(s) match on stderr
+[tester::#KJ0] [test-3] ✓ 7 line(s) match on stdout
+[tester::#KJ0] [test-3] ✓ Received exit code 65.
+[tester::#KJ0] [test-4] Running test case: 4
+[tester::#KJ0] [test-4] Writing contents to ./test.lox:
+[tester::#KJ0] [test-4] [test.lox] (5+3) > 7 ; "Success" != "Failure" & 10 >= 5
+[tester::#KJ0] [test-4] $ ./your_program.sh tokenize test.lox
+[your_program] [line 1] Error: Unexpected character: &
+[your_program] LEFT_PAREN ( null
+[your_program] NUMBER 5 5.0
+[your_program] PLUS + null
+[your_program] NUMBER 3 3.0
+[your_program] RIGHT_PAREN ) null
+[your_program] GREATER > null
+[your_program] NUMBER 7 7.0
+[your_program] SEMICOLON ; null
+[your_program] STRING "Success" Success
+[your_program] BANG_EQUAL != null
+[your_program] STRING "Failure" Failure
+[your_program] NUMBER 10 10.0
+[your_program] GREATER_EQUAL >= null
+[your_program] NUMBER 5 5.0
+[your_program] EOF  null
+[tester::#KJ0] [test-4] ✓ 1 line(s) match on stderr
+[tester::#KJ0] [test-4] ✓ 15 line(s) match on stdout
+[tester::#KJ0] [test-4] ✓ Received exit code 65.
+[tester::#KJ0] Test passed.
+
+[tester::#UE7] Running tests for Stage #UE7 (Scanning: String literals)
+[tester::#UE7] [test-1] Running test case: 1
+[tester::#UE7] [test-1] Writing contents to ./test.lox:
+[tester::#UE7] [test-1] [test.lox] "hello"
+[tester::#UE7] [test-1] $ ./your_program.sh tokenize test.lox
+[your_program] STRING "hello" hello
+[your_program] EOF  null
+[tester::#UE7] [test-1] ✓ 2 line(s) match on stdout
+[tester::#UE7] [test-1] ✓ Received exit code 0.
+[tester::#UE7] [test-2] Running test case: 2
+[tester::#UE7] [test-2] Writing contents to ./test.lox:
+[tester::#UE7] [test-2] [test.lox] "world" "unterminated
+[tester::#UE7] [test-2] $ ./your_program.sh tokenize test.lox
+[your_program] [line 1] Error: Unterminated string.
+[your_program] STRING "world" world
+[your_program] EOF  null
+[tester::#UE7] [test-2] ✓ 1 line(s) match on stderr
+[tester::#UE7] [test-2] ✓ 2 line(s) match on stdout
+[tester::#UE7] [test-2] ✓ Received exit code 65.
+[tester::#UE7] [test-3] Running test case: 3
+[tester::#UE7] [test-3] Writing contents to ./test.lox:
+[tester::#UE7] [test-3] [test.lox] "foo <|TAB|>bar 123 // hello world!"
+[tester::#UE7] [test-3] $ ./your_program.sh tokenize test.lox
+[your_program] STRING "foo 	bar 123 // hello world!" foo 	bar 123 // hello world!
+[your_program] EOF  null
+[tester::#UE7] [test-3] ✓ 2 line(s) match on stdout
+[tester::#UE7] [test-3] ✓ Received exit code 0.
+[tester::#UE7] [test-4] Running test case: 4
+[tester::#UE7] [test-4] Writing contents to ./test.lox:
+[tester::#UE7] [test-4] [test.lox] "baz"+"hello""perseverance" && "Success" != "Failure"
+[tester::#UE7] [test-4] $ ./your_program.sh tokenize test.lox
+[your_program] [line 1] Error: Unexpected character: &
+[your_program] STRING "baz" baz
+[your_program] PLUS + null
+[your_program] STRING "hello" hello
+[your_program] STRING "perseverance" perseverance
+[your_program] STRING "Success" Success
+[your_program] [line 1] Error: Unexpected character: &
+[your_program] BANG_EQUAL != null
+[your_program] STRING "Failure" Failure
+[your_program] EOF  null
+[tester::#UE7] [test-4] ✓ 2 line(s) match on stderr
+[tester::#UE7] [test-4] ✓ 8 line(s) match on stdout
+[tester::#UE7] [test-4] ✓ Received exit code 65.
+[tester::#UE7] Test passed.
+
+[tester::#TZ7] Running tests for Stage #TZ7 (Scanning: Multi-line errors)
+[tester::#TZ7] [test-1] Running test case: 1
+[tester::#TZ7] [test-1] Writing contents to ./test.lox:
+[tester::#TZ7] [test-1] [test.lox] ()<|SPACE|><|TAB|>@
+[tester::#TZ7] [test-1] $ ./your_program.sh tokenize test.lox
+[your_program] [line 2] Error: Unexpected character: @
+[your_program] LEFT_PAREN ( null
+[your_program] RIGHT_PAREN ) null
+[your_program] EOF  null
+[tester::#TZ7] [test-1] ✓ 1 line(s) match on stderr
+[tester::#TZ7] [test-1] ✓ 3 line(s) match on stdout
+[tester::#TZ7] [test-1] ✓ Received exit code 65.
+[tester::#TZ7] [test-2] Running test case: 2
+[tester::#TZ7] [test-2] Writing contents to ./test.lox:
+[tester::#TZ7] [test-2] [test.lox] #<|SPACE|>
+[tester::#TZ7] [test-2] $ ./your_program.sh tokenize test.lox
+[your_program] EOF  null
+[your_program] [line 1] Error: Unexpected character: #
+[tester::#TZ7] [test-2] ✓ 1 line(s) match on stderr
+[tester::#TZ7] [test-2] ✓ 1 line(s) match on stdout
+[tester::#TZ7] [test-2] ✓ Received exit code 65.
+[tester::#TZ7] [test-3] Running test case: 3
+[tester::#TZ7] [test-3] Writing contents to ./test.lox:
+[tester::#TZ7] [test-3] [test.lox] ()  #<|TAB|>{}
+[tester::#TZ7] [test-3] [test.lox] @
+[tester::#TZ7] [test-3] [test.lox] $
+[tester::#TZ7] [test-3] [test.lox] +++
+[tester::#TZ7] [test-3] [test.lox] // Let's Go!
+[tester::#TZ7] [test-3] [test.lox] +++
+[tester::#TZ7] [test-3] [test.lox] #
+[tester::#TZ7] [test-3] $ ./your_program.sh tokenize test.lox
+[your_program] [line 1] Error: Unexpected character: #
+[your_program] [line 2] Error: Unexpected character: @
+[your_program] [line 3] Error: Unexpected character: $
+[your_program] [line 8] Error: Unexpected character: #
+[your_program] LEFT_PAREN ( null
+[your_program] RIGHT_PAREN ) null
+[your_program] LEFT_BRACE { null
+[your_program] RIGHT_BRACE } null
+[your_program] PLUS + null
+[your_program] PLUS + null
+[your_program] PLUS + null
+[your_program] PLUS + null
+[your_program] PLUS + null
+[your_program] PLUS + null
+[your_program] EOF  null
+[tester::#TZ7] [test-3] ✓ [line 1] Error: Unexpected character: #
+[tester::#TZ7] [test-3] ✓ [line 2] Error: Unexpected character: @
+[tester::#TZ7] [test-3] ✓ [line 3] Error: Unexpected character: $
+[tester::#TZ7] [test-3] 𐄂 [line 8] Error: Unexpected character: #
+[tester::#TZ7] [test-3] Expected line #4 on stderr to be "[line 7] Error: Unexpected character: #", got "[line 8] Error: Unexpected character: #"
+[tester::#TZ7] [test-3] Test failed (try setting 'debug: true' in your codecrafters.yml to see more details)
